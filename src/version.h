@@ -34,4 +34,6 @@
 
 extern const QString g_VersionStr;
 
+extern const QString g_VRML_Header;
+
 #endif

@@ -23,6 +23,7 @@
 #include <QDir>
 
 #include "version.h"
+#include "resistors.h"
 
 int main(int argc, char *argv[])
 {
@@ -30,6 +31,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationName("kicad3Dmodels generator");
     QCoreApplication::setApplicationVersion( g_VersionStr );
 
+    QString outputPath = "../../generated/";
 
     // http://doc.qt.io/qt-5/qcommandlineparser.html
 
@@ -57,6 +59,11 @@ int main(int argc, char *argv[])
 
     if( command == "generate" )
     {
+        GENERATE_Resistors( outputPath,
+                            RES_TYPE_FILM_CARBON,
+                            RES_PWR_025W,
+                            RES_BAND_4,
+                            RES_TOL_20 );
 
     }
 

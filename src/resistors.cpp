@@ -28,6 +28,7 @@ std::map <eResistorBandType, QString> g_MapBandToString;
 
 std::map <eResistorPower, QString> g_MapResPwrToString;
 
+std::map <eResistorType, QString> g_MapResTypeToString;
 
 static bool s_initialized = false;
 
@@ -79,6 +80,8 @@ void Init_resistors()
     g_MapBandToString[RES_BAND_6] = "6";
 
     g_MapResPwrToString[RES_PWR_025W] = "025";
+
+    g_MapResTypeToString[RES_TYPE_FILM_CARBON] = "Film_Carbon";
 
     s_initialized = true;
 }

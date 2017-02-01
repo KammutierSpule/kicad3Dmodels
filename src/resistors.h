@@ -68,6 +68,14 @@ extern std::map <eResistorBandType, QString> g_MapBandToString;
 
 extern std::map <eResistorPower, QString> g_MapResPwrToString;
 
+extern std::map <eResistorType, QString> g_MapResTypeToString;
+
 void Init_resistors();
+
+bool GENERATE_Resistors( QString aPath,
+                         eResistorType aResType,
+                         eResistorPower aResPower,
+                         eResistorBandType aBandType,
+                         eResistorTolerance aResTolerance );
 
 #endif

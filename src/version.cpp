@@ -23,3 +23,7 @@
 const QString g_VersionStr = QString::number(VER_MAJOR) + "." +
                              QString::number(VER_MINOR) + "." +
                              QString::number(VER_PATCH);
+
+const QString g_VRML_Header = QString("#VRML V2.0 utf8\n") +
+                              QString("#generated with kicad3Dmodel v") + g_VersionStr +
+                              QString(" https://github.com/KammutierSpule/kicad3Dmodels\n");

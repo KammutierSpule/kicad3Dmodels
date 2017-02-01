@@ -23,11 +23,13 @@
 #include <QTextStream>
 #include <QDataStream>
 
+#include "version.h"
 #include "resistors.h"
 
 static bool generate_ResistorBand( QString aPath,
                                    eResistorType aResType,
                                    eResistorPower aResPower,
+                                   eResistorBandType aBandType,
                                    int aBand1, int aBand2, int aBand3, int aBand4, int aBand5, int aBand6 )
 {
     // http://www.resistorguide.com/pictures/resistor_color_codes_chart.png
@@ -36,15 +38,24 @@ static bool generate_ResistorBand( QString aPath,
     Q_ASSERT( aBand2 >= 0 );
     Q_ASSERT( aBand3 >= 0 );
 
-    QString fileName = "R" +
-                       aBand1 +
-                       aBand2 +
-                       aBand3 +
-                       ((aBand4>=0)? QString::number(aBand4):"") +
-                       ".wrl";
+    QString fileName;
+
+    if( aBandType < RES_BAND_5 )
+    {
+        fileName = "R" + QString::number(aBand1) +
+                         QString::number(aBand2) +
+                         QString::number(aBand3) + ".wrl";
+    }
+    else
+    {
+        fileName = "R" + QString::number(aBand1) +
+                         QString::number(aBand2) +
+                         QString::number(aBand3) +
+                         QString::number(aBand4) +".wrl";
+    }
 
 
-    QFile file( fileName );
+    QFile file( aPath + fileName );
 
     if( !file.open( QIODevice::WriteOnly | QIODevice::Text ) )
     {
@@ -61,12 +72,25 @@ static bool generate_ResistorBand( QString aPath,
     stream.setFieldWidth( 0 );
     stream.setRealNumberNotation( QTextStream::FixedNotation );
 
-    stream << "text" << "\n";
+    stream << g_VRML_Header;
+
+    switch( aBandType )
+    {
+        case RES_BAND_4:
+            stream << "Transform { translation -.90 0 0.51 scale 0.55 1.22 1.22 children [ Inline { url \"../ring_" + QString::number(aBand1) + ".wrl\" } ] }\n";
+            stream << "Transform { translation -.53 0 0.51 scale 0.55 1.04 1.04 children [ Inline { url \"../ring_" + QString::number(aBand2) + ".wrl\" } ] }\n";
+            stream << "Transform { translation -.18 0 0.51 scale 0.55 1.03 1.03 children [ Inline { url \"../ring_" + QString::number(aBand3) + ".wrl\" } ] }\n";
+            stream << "Transform { translation 0.80 0 0.51 scale 0.55 1.22 1.22 children [ Inline { url \"../ring_" + QString::number(aBand4) + ".wrl\" } ] }\n";
+        break;
+    }
+
+    stream << "Inline { url \"../RESAD780W55L630D240B.wrl\" }\n";
 
     file.close();
 
     return true;
 }
+
 
 
 bool GENERATE_Resistors( QString aPath,
@@ -84,9 +108,11 @@ bool GENERATE_Resistors( QString aPath,
         return false;
     }
 
-    QString pathDir = aPath + "/" +
-                      "FilmCarbon_" + g_MapResTolToString[aResTolerance] + "TOL_" +
-                      g_MapBandToString[aBandType] + "B" +
+    QString pathDir = aPath + "/" + "Resistors/"+
+                      g_MapResTypeToString[aResType] + "/" +
+                      g_MapResTypeToString[aResType] + "_" +
+                      g_MapResTolToString[aResTolerance] + "TOL_" +
+                      g_MapBandToString[aBandType] + "B_" +
                       g_MapResPwrToString[aResPower] + "W" +
                       "/";
 
@@ -101,4 +127,26 @@ bool GENERATE_Resistors( QString aPath,
             return false;
         }
     }
+
+    for(int value1 = 0; value1 < 10; ++value1 )
+    {
+        for(int value2 = 0; value2 < 1; ++value2 )
+        {
+            for(int value3 = 0; value3 < 1; ++value3 )
+            {
+                generate_ResistorBand( pathDir,
+                                       aResType,
+                                       aResPower,
+                                       aBandType,
+                                       value1,
+                                       value2,
+                                       value3,
+                                       g_MapResTolToNumber[RES_TOL_5],
+                                       -1,
+                                       -1 );
+            }
+        }
+    }
+
+    return true;
 }
