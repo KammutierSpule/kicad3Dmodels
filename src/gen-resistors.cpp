@@ -17,6 +17,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
+// Includes
+// /////////////////////////////////////////////////////////////////////////////
 
 #include <QtGlobal>
 #include <QDir>
@@ -74,23 +76,46 @@ static bool generate_ResistorBand( QString aPath,
 
     stream << g_VRML_Header;
 
+    // Add the resistence rings
     switch( aBandType )
     {
         case RES_BAND_4:
-            stream << "Transform { translation -.90 0 0.51 scale 0.55 1.22 1.22 children [ Inline { url \"../ring_" + QString::number(aBand1) + ".wrl\" } ] }\n";
-            stream << "Transform { translation -.53 0 0.51 scale 0.55 1.04 1.04 children [ Inline { url \"../ring_" + QString::number(aBand2) + ".wrl\" } ] }\n";
-            stream << "Transform { translation -.18 0 0.51 scale 0.55 1.03 1.03 children [ Inline { url \"../ring_" + QString::number(aBand3) + ".wrl\" } ] }\n";
-            stream << "Transform { translation 0.80 0 0.51 scale 0.55 1.22 1.22 children [ Inline { url \"../ring_" + QString::number(aBand4) + ".wrl\" } ] }\n";
+            stream << "Transform { translation -.90 0 .51 scale .55 1.22 1.22 children [ Inline { url \"../ring_" + QString::number(aBand1) + ".wrl\" } ] }\n";
+            stream << "Transform { translation -.53 0 .51 scale .55 1.04 1.04 children [ Inline { url \"../ring_" + QString::number(aBand2) + ".wrl\" } ] }\n";
+            stream << "Transform { translation -.18 0 .51 scale .55 1.03 1.03 children [ Inline { url \"../ring_" + QString::number(aBand3) + ".wrl\" } ] }\n";
+            stream << "Transform { translation 0.80 0 .51 scale .55 1.22 1.22 children [ Inline { url \"../ring_" + QString::number(aBand4) + ".wrl\" } ] }\n";
+        break;
+
+        default:
+            qFatal( "Error %d band type is not implemented.", aBandType );
         break;
     }
 
-    stream << "Inline { url \"../RESAD780W55L630D240B.wrl\" }\n";
+    // Add the resistence body
+    switch( aResType )
+    {
+        case RES_TYPE_FILM_CARBON:
+            switch( aResPower )
+            {
+                case RES_PWR_025W:
+                    stream << "Inline { url \"../RESAD780W55L630D240B.wrl\" }\n";
+                break;
+
+                default:
+                    qFatal( "Error resistence power: %d is not implemented for resistence type: %d", aResPower, aResType );
+                break;
+            }
+        break;
+
+        default:
+            qFatal( "Error %d resistence type is not implemented.", aResType );
+        break;
+    }
 
     file.close();
 
     return true;
 }
-
 
 
 bool GENERATE_Resistors( QString aPath,
@@ -116,11 +141,11 @@ bool GENERATE_Resistors( QString aPath,
                       g_MapResPwrToString[aResPower] + "W" +
                       "/";
 
-    QDir dir(pathDir);
+    QDir dir( pathDir );
 
     if( dir.exists() == false )
     {
-        if( dir.mkpath(".") == false )
+        if( dir.mkpath( "." ) == false )
         {
             qFatal( "Cannot create path %s.", pathDir.toUtf8().data() );
 
@@ -128,11 +153,11 @@ bool GENERATE_Resistors( QString aPath,
         }
     }
 
-    for(int value1 = 0; value1 < 10; ++value1 )
+    for( int value1 = 0; value1 < 10; ++value1 )
     {
-        for(int value2 = 0; value2 < 1; ++value2 )
+        for( int value2 = 0; value2 < 1; ++value2 )
         {
-            for(int value3 = 0; value3 < 1; ++value3 )
+            for( int value3 = 0; value3 < 1; ++value3 )
             {
                 generate_ResistorBand( pathDir,
                                        aResType,
@@ -141,7 +166,7 @@ bool GENERATE_Resistors( QString aPath,
                                        value1,
                                        value2,
                                        value3,
-                                       g_MapResTolToNumber[RES_TOL_5],
+                                       g_MapResTolToNumber[aResTolerance],
                                        -1,
                                        -1 );
             }

@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
                             RES_TYPE_FILM_CARBON,
                             RES_PWR_025W,
                             RES_BAND_4,
-                            RES_TOL_20 );
+                            RES_TOL_5 );
 
     }
 

@@ -41,7 +41,12 @@ typedef enum
 
 typedef enum
 {
-    RES_PWR_025W    ///< 1/4 W
+    RES_PWR_00625W, ///< 1/16 W
+    RES_PWR_0125W,  ///< 1/8 W
+    RES_PWR_025W,   ///< 1/4 W
+    RES_PWR_05W,    ///< 1/2 W
+    RES_PWR_1W,     ///< 1 W
+    RES_PWR_2W      ///< 2 W
 }eResistorPower;
 
 // http://www.resistorguide.com/pictures/resistor_color_codes_chart.png
@@ -51,13 +56,16 @@ typedef enum
     RES_TOL_1,      ///< 1%     (F)
     RES_TOL_2,      ///< 2%     (G)
     RES_TOL_05,     ///< 0.5%   (D)
-    RES_TOL_025,
-    RES_TOL_01,
-    RES_TOL_005,
-    RES_TOL_5,
-    RES_TOL_10,
-    RES_TOL_20
+    RES_TOL_025,    ///< 0.25%
+    RES_TOL_01,     ///< 0.10%
+    RES_TOL_005,    ///< 0.05%
+    RES_TOL_5,      ///< 5%
+    RES_TOL_10,     ///< 10%
+    RES_TOL_20      ///< 20%
 }eResistorTolerance;
+
+// Global vars
+// /////////////////////////////////////////////////////////////////////////////
 
 extern std::map <eResistorTolerance, int> g_MapResTolToNumber;
 extern std::map <eResistorTolerance, QString> g_MapResTolToString;
@@ -69,6 +77,10 @@ extern std::map <eResistorBandType, QString> g_MapBandToString;
 extern std::map <eResistorPower, QString> g_MapResPwrToString;
 
 extern std::map <eResistorType, QString> g_MapResTypeToString;
+
+
+// Public prototypes
+// /////////////////////////////////////////////////////////////////////////////
 
 void Init_resistors();
 

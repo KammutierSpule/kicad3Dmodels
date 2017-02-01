@@ -19,6 +19,9 @@
 
 #include "resistors.h"
 
+// Global vars
+// /////////////////////////////////////////////////////////////////////////////
+
 std::map <eResistorTolerance, int> g_MapResTolToNumber;
 std::map <eResistorTolerance, QString> g_MapResTolToString;
 std::map <eResistorTolerance, QString> g_MapResTolToPercentage;
@@ -29,6 +32,9 @@ std::map <eResistorBandType, QString> g_MapBandToString;
 std::map <eResistorPower, QString> g_MapResPwrToString;
 
 std::map <eResistorType, QString> g_MapResTypeToString;
+
+// Static local vars
+// /////////////////////////////////////////////////////////////////////////////
 
 static bool s_initialized = false;
 
@@ -80,6 +86,9 @@ void Init_resistors()
     g_MapBandToString[RES_BAND_6] = "6";
 
     g_MapResPwrToString[RES_PWR_025W] = "025";
+    g_MapResPwrToString[RES_PWR_05W]  = "05";
+    g_MapResPwrToString[RES_PWR_1W]   = "1";
+    g_MapResPwrToString[RES_PWR_2W]   = "2";
 
     g_MapResTypeToString[RES_TYPE_FILM_CARBON] = "Film_Carbon";
 
