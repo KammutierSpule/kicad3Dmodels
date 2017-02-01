@@ -1,6 +1,8 @@
 # kicad3Dmodels
 Tool for generation of 3D VRML models for KiCad based on 3D CAD seed models
 
+> NOTE: The WRL files can only be used by the (upcoming) version 5 of KiCad or with the Nightly Development Builds version.
+
 # Licenses
 
 ##Source code
