@@ -153,25 +153,36 @@ bool GENERATE_Resistors( QString aPath,
         }
     }
 
-    for( int value1 = 0; value1 < 10; ++value1 )
+    switch( aBandType )
     {
-        for( int value2 = 0; value2 < 1; ++value2 )
-        {
-            for( int value3 = 0; value3 < 1; ++value3 )
+        case RES_BAND_4:
+            for( int value1 = 0; value1 < 10; ++value1 )
             {
-                generate_ResistorBand( pathDir,
-                                       aResType,
-                                       aResPower,
-                                       aBandType,
-                                       value1,
-                                       value2,
-                                       value3,
-                                       g_MapResTolToNumber[aResTolerance],
-                                       -1,
-                                       -1 );
+                for( int value2 = 0; value2 < 10; ++value2 )
+                {
+                    for( int value3 = 0; value3 < 10; ++value3 )
+                    {
+                        generate_ResistorBand( pathDir,
+                                               aResType,
+                                               aResPower,
+                                               aBandType,
+                                               value1,
+                                               value2,
+                                               value3,
+                                               g_MapResTolToNumber[aResTolerance],
+                                               -1,
+                                               -1 );
+                    }
+                }
             }
-        }
+        break;
+
+        default:
+            qFatal( "Error %d band type is not implemented.", aBandType );
+        break;
     }
+
+
 
     return true;
 }

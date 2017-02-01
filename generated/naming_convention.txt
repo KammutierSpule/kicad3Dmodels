@@ -1,0 +1,8 @@
+
+http://www.ipc.org/committee/drafts/1-13_d_7251WD1.pdf
+
+Resistors, Axial Diameter Horizontal Mounting 
+RESAD + Lead Spacing + W Lead Width + L Body Length + D Body Diameter
+
+RESAD780W55L630D240B
+Resistors, Axial Diameter; Lead Spacing 7.80; Lead Width 0.55; Body Length 6.30; Body Diameter 2.40
