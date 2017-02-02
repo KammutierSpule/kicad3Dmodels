@@ -1,5 +1,6 @@
 # kicad3Dmodels
 Tool for generation of 3D VRML models for KiCad based on 3D CAD seed models
+The main propose of this generator is to create models for each different values of the components (eg: different resistor color codes or SMD digit values) 
 
 > NOTE: The WRL files can only be used by the (upcoming) version 5 of KiCad or with the Nightly Development Builds version.
 
