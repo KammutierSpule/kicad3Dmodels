@@ -32,10 +32,15 @@ However, mind that KiCad 3DViewer will cache on your system the loaded generated
 
 ## Resistors
 
+### Chip
+
+#### EIA 0805 METRIC 2012
+![EIA0805_METRIC2012](https://github.com/KammutierSpule/kicad3Dmodels/raw/master/generated/Resistors/Chip/EIA0805_METRIC2012-RenderDemo.jpg)
+
 ### Film Carbon
 
 #### 1/4W 5%
-![Film_Carbon_5TOL_4B_025W](https://github.com/KammutierSpule/kicad3Dmodels/blob/master/generated/Resistors/Film_Carbon/Film_Carbon_5TOL_4B_025W-RenderDemo.png?raw=true)
+![Film_Carbon_5TOL_4B_025W](https://raw.githubusercontent.com/KammutierSpule/kicad3Dmodels/master/generated/Resistors/Film_Carbon/Film_Carbon_5TOL_4B_025W-RenderDemo.jpg)
 
 # Other KiCad 3D Libraries
 
