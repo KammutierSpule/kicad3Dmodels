@@ -33,6 +33,8 @@ std::map <eResistorPower, QString> g_MapResPwrToString;
 
 std::map <eResistorType, QString> g_MapResTypeToString;
 
+std::map <eResistorChipType, QString> g_MapChipTypeToString;
+
 // Static local vars
 // /////////////////////////////////////////////////////////////////////////////
 
@@ -91,6 +93,13 @@ void Init_resistors()
     g_MapResPwrToString[RES_PWR_2W]   = "2";
 
     g_MapResTypeToString[RES_TYPE_FILM_CARBON] = "Film_Carbon";
+    g_MapResTypeToString[RES_TYPE_FILM_CARBON] = "Chip";
+
+
+    g_MapChipTypeToString[RES_CHIP_EIA0402_METRIC1005] = "EIA0402_METRIC1005";
+    g_MapChipTypeToString[RES_CHIP_EIA0603_METRIC1608] = "EIA0603_METRIC1608";
+    g_MapChipTypeToString[RES_CHIP_EIA0805_METRIC2012] = "EIA0805_METRIC2012";
+    g_MapChipTypeToString[RES_CHIP_EIA1206_METRIC3216] = "EIA1206_METRIC3216";
 
     s_initialized = true;
 }

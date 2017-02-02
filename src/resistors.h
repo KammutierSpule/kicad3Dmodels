@@ -26,7 +26,8 @@
 
 typedef enum
 {
-    RES_TYPE_FILM_CARBON = 0
+    RES_TYPE_FILM_CARBON = 0,
+    RES_TYPE_CHIP
 }eResistorType;
 
 // http://www.resistorguide.com/resistor-color-code/
@@ -38,6 +39,14 @@ typedef enum
     RES_BAND_5,
     RES_BAND_6
 }eResistorBandType;
+
+typedef enum
+{
+    RES_CHIP_EIA0402_METRIC1005,
+    RES_CHIP_EIA0603_METRIC1608,
+    RES_CHIP_EIA0805_METRIC2012,
+    RES_CHIP_EIA1206_METRIC3216,
+}eResistorChipType;
 
 typedef enum
 {
@@ -78,6 +87,7 @@ extern std::map <eResistorPower, QString> g_MapResPwrToString;
 
 extern std::map <eResistorType, QString> g_MapResTypeToString;
 
+extern std::map <eResistorChipType, QString> g_MapChipTypeToString;
 
 // Public prototypes
 // /////////////////////////////////////////////////////////////////////////////

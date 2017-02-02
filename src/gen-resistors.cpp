@@ -186,3 +186,115 @@ bool GENERATE_Resistors( QString aPath,
 
     return true;
 }
+
+
+static bool generate_ResistorChip_3_digit( QString aPath,
+                                           eResistorChipType aChipType,
+                                           QString aDigit1, QString aDigit2, QString aDigit3 )
+{
+    QString fileName = aDigit1 + aDigit2 + aDigit3 + ".wrl";
+
+    QFile file( aPath + fileName );
+
+    if( !file.open( QIODevice::WriteOnly | QIODevice::Text ) )
+    {
+        qFatal( "Error opening the file %s for writting. error: %s",
+                fileName.toUtf8().data(),
+                file.errorString().toUtf8().data() );
+
+        return false;
+    }
+
+    QTextStream stream( &file );
+
+    stream.setPadChar( ' ' );
+    stream.setFieldWidth( 0 );
+    stream.setRealNumberNotation( QTextStream::FixedNotation );
+
+    stream << g_VRML_Header;
+
+    // Add the resistence values and body
+    switch( aChipType )
+    {
+        case RES_CHIP_EIA0805_METRIC2012:
+            stream << "Transform { translation -.90 0 .51 scale .55 1.22 1.22 children [ Inline { url \"../" + aDigit1 + ".wrl\" } ] }\n";
+            stream << "Transform { translation -.53 0 .51 scale .55 1.04 1.04 children [ Inline { url \"../" + aDigit2 + ".wrl\" } ] }\n";
+            stream << "Transform { translation -.18 0 .51 scale .55 1.03 1.03 children [ Inline { url \"../" + aDigit3 + ".wrl\" } ] }\n";
+            stream << "Inline { url \"../RESAD780W55L630D240B.wrl\" }\n";
+        break;
+
+        default:
+            qFatal( "Error %d chipt resistor type is not implemented.", aChipType );
+        break;
+    }
+
+    file.close();
+
+    return true;
+}
+
+
+bool GENERATE_ResistorsChip( QString aPath,
+                             eResistorChipType aChipType )
+{
+    Init_resistors();
+
+    if( !QDir(aPath).exists() )
+    {
+        qFatal( "Path %s does not exists.", aPath.toUtf8().data() );
+
+        return false;
+    }
+
+    QString pathDir = aPath + "/" + "Resistors/"+
+                      g_MapResTypeToString[RES_TYPE_CHIP] + "/" +
+                      g_MapChipTypeToString[aChipType] +
+                      "/";
+
+    QDir dir( pathDir );
+
+    if( dir.exists() == false )
+    {
+        if( dir.mkpath( "." ) == false )
+        {
+            qFatal( "Cannot create path %s.", pathDir.toUtf8().data() );
+
+            return false;
+        }
+    }
+
+
+    // RES_CHIP_EIA0805_METRIC2012
+
+    // Rvv
+    for( int value1 = 1; value1 < 10; ++value1 )
+    {
+        for( int value2 = 0; value2 < 10; ++value2 )
+        {
+            generate_ResistorChip_3_digit( pathDir, RES_CHIP_EIA0805_METRIC2012, "R", QString::number(value1), QString::number(value2) );
+        }
+    }
+
+    // vRv
+    for( int value1 = 1; value1 < 10; ++value1 )
+    {
+        for( int value2 = 0; value2 < 10; ++value2 )
+        {
+            generate_ResistorChip_3_digit( pathDir, RES_CHIP_EIA0805_METRIC2012, QString::number(value1), "R", QString::number(value2) );
+        }
+    }
+
+    // vvv
+    for( int value3 = 0; value3 < 10; ++value3 )
+    {
+        for( int value1 = 1; value1 < 10; ++value1 )
+        {
+            for( int value2 = 0; value2 < 10; ++value2 )
+            {
+                generate_ResistorChip_3_digit( pathDir, RES_CHIP_EIA0805_METRIC2012, QString::number(value1), QString::number(value2), QString::number(value3) );
+            }
+        }
+    }
+
+    return true;
+}
