@@ -11,6 +11,22 @@ The software source code in the 'src'folder is licensed under the "GNU GENERAL P
 ##3D model files
 The 3D model files on the 'generated' folder are licensed under a modified MIT license. Please read 'generated\LICENSE'
 
+# Download pre-generated
+
+You can access the generated folder https://github.com/KammutierSpule/kicad3Dmodels/tree/master/generated and look for pre-generated ZIP files.
+
+# Usage instructions
+
+Since KiCad 5 it is possible to add different 3D model file formats (STEP, IGES, VRML, X3D) to footprints.
+If you only care about CAD correctness you should use STEP or IGES format as much as possible.
+VRML and X3D file formats are not designed for use with CAD (they are triangle based formats without units).
+If you would like to achieve better renders with KiCad, then you should use VRML format. The most important aspect is that it allows to set materials for the different parts of the model. Using the proper materials on the models it will generate more realistic renders.
+
+This library has for each component type group a generic CAD model (eg: A Resistor CAD model in the format FreeCAD, STEP/or IGES) and has a generated VRML model files for each value (eg: a axial film resistor with each individual bands for different values)
+
+The generated VRML files for each individual value model are very small since they use a (now supported) included property of the VRML format, alowing to reuse different files and individual transform it on a new file.
+However, mind that KiCad 3DViewer will cache on your system the loaded generated models that will use more disk space but if you only use some model values, there should be no big issue with the disk space and caching.
+
 # Generated Models
 
 ## Resistors
@@ -19,3 +35,21 @@ The 3D model files on the 'generated' folder are licensed under a modified MIT l
 
 #### 1/4W 5%
 ![Film_Carbon_5TOL_4B_025W](https://github.com/KammutierSpule/kicad3Dmodels/blob/master/generated/Resistors/Film_Carbon/Film_Carbon_5TOL_4B_025W-RenderDemo.png?raw=true)
+
+# Other KiCad 3D Libraries
+
+## kicad-3d-models-in-freecad by Maurice
+https://github.com/easyw/kicad-3d-models-in-freecad
+https://github.com/easyw/kicad-3d-mcad-models
+
+This is a CAD parametric generated library, generated via scripts on FreeCAD that will generate / convert to STEP and VRML model files.
+
+## kicad3Dmodels by Cirilo
+https://github.com/cbernardo/kicad3Dmodels
+
+This is a parametric generated library that will generate VRML models only.
+
+## Kicad Electronic CAD libraries by Walter Lain
+http://www.smisioto.eu/elettronica/kicad
+
+This is a well know library that was adopted to use on the KiCad official libraries. The models were modeled using the Wings3D that are converted to VRML models to be used on KiCad.
