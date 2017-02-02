@@ -4,7 +4,7 @@
 Shape {
     # Resistor Value 9 - White
     appearance Appearance {material DEF RES-RING-COLOR Material {
-        diffuseColor 0.82 0.86 0.85
+        diffuseColor 0.72 0.76 0.75
         emissiveColor 0 0 0
         specularColor 0.09 0.07 0.05
         ambientIntensity 0.5
