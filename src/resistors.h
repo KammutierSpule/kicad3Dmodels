@@ -100,4 +100,7 @@ bool GENERATE_Resistors( QString aPath,
                          eResistorBandType aBandType,
                          eResistorTolerance aResTolerance );
 
+bool GENERATE_ResistorsChip( QString aPath,
+                             eResistorChipType aChipType );
+
 #endif

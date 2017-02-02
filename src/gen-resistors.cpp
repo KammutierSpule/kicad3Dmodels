@@ -217,10 +217,25 @@ static bool generate_ResistorChip_3_digit( QString aPath,
     switch( aChipType )
     {
         case RES_CHIP_EIA0805_METRIC2012:
-            stream << "Transform { translation -.90 0 .51 scale .55 1.22 1.22 children [ Inline { url \"../" + aDigit1 + ".wrl\" } ] }\n";
-            stream << "Transform { translation -.53 0 .51 scale .55 1.04 1.04 children [ Inline { url \"../" + aDigit2 + ".wrl\" } ] }\n";
-            stream << "Transform { translation -.18 0 .51 scale .55 1.03 1.03 children [ Inline { url \"../" + aDigit3 + ".wrl\" } ] }\n";
-            stream << "Inline { url \"../RESAD780W55L630D240B.wrl\" }\n";
+            if (!(( aDigit1 == "0") && ( aDigit2 == "0") && ( aDigit3 == "0")))
+            {
+                stream << "Transform { translation -0.22 0.16 0.125 scale 0.7 0.7 0.3 children [ Inline { url \"../" + aDigit1 + ".wrl\" } ] }\n";
+                stream << "Transform { translation -0.06 0.16 0.125 scale 0.7 0.7 0.3 children [ Inline { url \"../" + aDigit2 + ".wrl\" } ] }\n";
+                stream << "Transform { translation +0.10 0.16 0.125 scale 0.7 0.7 0.3 children [ Inline { url \"../" + aDigit3 + ".wrl\" } ] }\n";
+
+                if ( (( aDigit1 == "6") && ( aDigit2 == "6") && ( aDigit3 == "6") ) ||
+                     (( aDigit1 == "9") && ( aDigit2 == "9") && ( aDigit3 == "9") ) )
+                {
+                    stream << "Transform { translation  0.0 -0.16  0.225 scale 1.1 0.09 0.04 children [ Inline { url \"../cube.wrl\" } ] }";
+                }
+            }
+            else
+            {
+                stream << "Transform { translation -0.06 0.16 0.125 scale 0.7 0.7 0.3 children [ Inline { url \"../" + aDigit2 + ".wrl\" } ] }\n";
+            }
+
+
+            stream << "Inline { url \"../RESC2012X65_EIA0805_METRIC2012.wrl\" }\n";
         break;
 
         default:
@@ -263,6 +278,7 @@ bool GENERATE_ResistorsChip( QString aPath,
         }
     }
 
+    generate_ResistorChip_3_digit( pathDir, RES_CHIP_EIA0805_METRIC2012, QString::number(0), QString::number(0), QString::number(0) );
 
     // RES_CHIP_EIA0805_METRIC2012
 

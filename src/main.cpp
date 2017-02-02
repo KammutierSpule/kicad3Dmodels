@@ -59,11 +59,15 @@ int main(int argc, char *argv[])
 
     if( command == "generate" )
     {
+        /*
         GENERATE_Resistors( outputPath,
                             RES_TYPE_FILM_CARBON,
                             RES_PWR_025W,
                             RES_BAND_4,
                             RES_TOL_5 );
+        */
+        GENERATE_ResistorsChip( outputPath,
+                                RES_CHIP_EIA0805_METRIC2012 );
     }
 
     //return app.exec();
