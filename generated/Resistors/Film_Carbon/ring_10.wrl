@@ -4,7 +4,7 @@
 Shape {
     # Resistor Value 10 - Gold
     appearance Appearance {material DEF RES-RING-COLOR Material {
-        diffuseColor 0.62 0.55 0.20
+        diffuseColor 0.7 0.55 0.20
         emissiveColor 0 0 0
         specularColor 0.3 0.3 0.3
         ambientIntensity 0.5

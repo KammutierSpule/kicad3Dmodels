@@ -93,7 +93,7 @@ void Init_resistors()
     g_MapResPwrToString[RES_PWR_2W]   = "2";
 
     g_MapResTypeToString[RES_TYPE_FILM_CARBON] = "Film_Carbon";
-    g_MapResTypeToString[RES_TYPE_FILM_CARBON] = "Chip";
+    g_MapResTypeToString[RES_TYPE_CHIP]        = "Chip";
 
 
     g_MapChipTypeToString[RES_CHIP_EIA0402_METRIC1005] = "EIA0402_METRIC1005";
