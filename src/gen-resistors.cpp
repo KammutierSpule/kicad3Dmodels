@@ -216,17 +216,39 @@ static bool generate_ResistorChip_3_digit( QString aPath,
     // Add the resistence values and body
     switch( aChipType )
     {
+        case RES_CHIP_EIA0603_METRIC1608:
+            if (!(( aDigit1 == "0") && ( aDigit2 == "0") && ( aDigit3 == "0")))
+            {
+                stream << "Transform { translation -0.17 0.10 0.125 scale 0.5 0.5 0.2 children [ Inline { url \"../" + aDigit1 + ".wrl\" } ] }\n";
+                stream << "Transform { translation -0.05 0.10 0.125 scale 0.5 0.5 0.2 children [ Inline { url \"../" + aDigit2 + ".wrl\" } ] }\n";
+                stream << "Transform { translation +0.08 0.10 0.125 scale 0.5 0.5 0.2 children [ Inline { url \"../" + aDigit3 + ".wrl\" } ] }\n";
+
+                if ( (( aDigit1 == "6") && ( aDigit2 == "6") && ( aDigit3 == "6") ) ||
+                     (( aDigit1 == "9") && ( aDigit2 == "9") && ( aDigit3 == "9") ) )
+                {
+                    stream << "Transform { translation  0.0 -0.115 0.185 scale 0.8 0.05 0.04 children [ Inline { url \"../cube.wrl\" } ] }\n";
+                }
+            }
+            else
+            {
+                stream << "Transform { translation -0.05 0.10 0.125 scale 0.5 0.5 0.2 children [ Inline { url \"../" + aDigit2 + ".wrl\" } ] }\n";
+            }
+
+
+            stream << "Inline { url \"../RESC1608X50_EIA0603_METRIC1608.wrl\" }\n";
+        break;
+
         case RES_CHIP_EIA0805_METRIC2012:
             if (!(( aDigit1 == "0") && ( aDigit2 == "0") && ( aDigit3 == "0")))
             {
                 stream << "Transform { translation -0.22 0.16 0.125 scale 0.7 0.7 0.3 children [ Inline { url \"../" + aDigit1 + ".wrl\" } ] }\n";
-                stream << "Transform { translation -0.06 0.16 0.125 scale 0.7 0.7 0.3 children [ Inline { url \"../" + aDigit2 + ".wrl\" } ] }\n";
+                stream << "Transform { translation -0.05 0.16 0.125 scale 0.7 0.7 0.3 children [ Inline { url \"../" + aDigit2 + ".wrl\" } ] }\n";
                 stream << "Transform { translation +0.10 0.16 0.125 scale 0.7 0.7 0.3 children [ Inline { url \"../" + aDigit3 + ".wrl\" } ] }\n";
 
                 if ( (( aDigit1 == "6") && ( aDigit2 == "6") && ( aDigit3 == "6") ) ||
                      (( aDigit1 == "9") && ( aDigit2 == "9") && ( aDigit3 == "9") ) )
                 {
-                    stream << "Transform { translation  0.0 -0.16  0.225 scale 1.1 0.09 0.04 children [ Inline { url \"../cube.wrl\" } ] }";
+                    stream << "Transform { translation  0.0 -0.16 0.225 scale 1.1 0.09 0.04 children [ Inline { url \"../cube.wrl\" } ] }\n";
                 }
             }
             else
@@ -278,16 +300,14 @@ bool GENERATE_ResistorsChip( QString aPath,
         }
     }
 
-    generate_ResistorChip_3_digit( pathDir, RES_CHIP_EIA0805_METRIC2012, QString::number(0), QString::number(0), QString::number(0) );
-
-    // RES_CHIP_EIA0805_METRIC2012
+    generate_ResistorChip_3_digit( pathDir, aChipType, QString::number(0), QString::number(0), QString::number(0) );
 
     // Rvv
     for( int value1 = 1; value1 < 10; ++value1 )
     {
         for( int value2 = 0; value2 < 10; ++value2 )
         {
-            generate_ResistorChip_3_digit( pathDir, RES_CHIP_EIA0805_METRIC2012, "R", QString::number(value1), QString::number(value2) );
+            generate_ResistorChip_3_digit( pathDir, aChipType, "R", QString::number(value1), QString::number(value2) );
         }
     }
 
@@ -296,7 +316,7 @@ bool GENERATE_ResistorsChip( QString aPath,
     {
         for( int value2 = 0; value2 < 10; ++value2 )
         {
-            generate_ResistorChip_3_digit( pathDir, RES_CHIP_EIA0805_METRIC2012, QString::number(value1), "R", QString::number(value2) );
+            generate_ResistorChip_3_digit( pathDir, aChipType, QString::number(value1), "R", QString::number(value2) );
         }
     }
 
@@ -307,7 +327,7 @@ bool GENERATE_ResistorsChip( QString aPath,
         {
             for( int value2 = 0; value2 < 10; ++value2 )
             {
-                generate_ResistorChip_3_digit( pathDir, RES_CHIP_EIA0805_METRIC2012, QString::number(value1), QString::number(value2), QString::number(value3) );
+                generate_ResistorChip_3_digit( pathDir, aChipType, QString::number(value1), QString::number(value2), QString::number(value3) );
             }
         }
     }

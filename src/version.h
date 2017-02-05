@@ -30,7 +30,7 @@
 #define VER_MINOR 1
 
 // when you make backwards-compatible bug fixes
-#define VER_PATCH 1
+#define VER_PATCH 2
 
 extern const QString g_VersionStr;
 

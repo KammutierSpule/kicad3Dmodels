@@ -66,8 +66,13 @@ int main(int argc, char *argv[])
                             RES_BAND_4,
                             RES_TOL_5 );
         */
+        /*
         GENERATE_ResistorsChip( outputPath,
                                 RES_CHIP_EIA0805_METRIC2012 );
+        */
+
+        GENERATE_ResistorsChip( outputPath,
+                                RES_CHIP_EIA0603_METRIC1608 );
     }
 
     //return app.exec();
