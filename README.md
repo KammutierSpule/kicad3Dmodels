@@ -36,6 +36,7 @@ However, mind that KiCad 3DViewer will cache on your system the loaded generated
 
 #### EIA 0603 METRIC 1608
 #### EIA 0805 METRIC 2012
+#### EIA 1206 METRIC 3216
 ![EIA0805_METRIC2012](https://github.com/KammutierSpule/kicad3Dmodels/raw/master/generated/Resistors/Chip/EIA0805_METRIC2012-RenderDemo.jpg)
 
 ### Film Carbon
