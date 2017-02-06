@@ -260,6 +260,28 @@ static bool generate_ResistorChip_3_digit( QString aPath,
             stream << "Inline { url \"../RESC2012X65_EIA0805_METRIC2012.wrl\" }\n";
         break;
 
+        case RES_CHIP_EIA1206_METRIC3216:
+            if (!(( aDigit1 == "0") && ( aDigit2 == "0") && ( aDigit3 == "0")))
+            {
+                stream << "Transform { translation -0.32 .23 .15 scale 1 1 .3 children [ Inline { url \"../" + aDigit1 + ".wrl\" } ] }\n";
+                stream << "Transform { translation -0.08 .23 .15 scale 1 1 .3 children [ Inline { url \"../" + aDigit2 + ".wrl\" } ] }\n";
+                stream << "Transform { translation .16 .23 .15 scale 1 1 .3 children [ Inline { url \"../" + aDigit3 + ".wrl\" } ] }\n";
+
+                if ( (( aDigit1 == "6") && ( aDigit2 == "6") && ( aDigit3 == "6") ) ||
+                     (( aDigit1 == "9") && ( aDigit2 == "9") && ( aDigit3 == "9") ) )
+                {
+                    stream << "Transform { translation  0 -0.22 .15 scale 1.6 .1 .3 children [ Inline { url \"../cube.wrl\" } ] }\n";
+                }
+            }
+            else
+            {
+                stream << "Transform { translation -0.08 .20 .15 scale 1 1 .3 children [ Inline { url \"../" + aDigit2 + ".wrl\" } ] }\n";
+            }
+
+
+            stream << "Inline { url \"../RESC3216x66_EIA1206_METRIC3216.wrl\" }\n";
+        break;
+
         default:
             qFatal( "Error %d chipt resistor type is not implemented.", aChipType );
         break;

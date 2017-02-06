@@ -100,8 +100,8 @@
     (uvia_drill 0.1)
   )
 
-  (module RESC3216X65 (layer F.Cu) (tedit 5898D37E) (tstamp 5898D3BC)
-    (at 52.07 31.75)
+  (module RESC3216X65 (layer F.Cu) (tedit 5898E501) (tstamp 5898E4FF)
+    (at 25.4 25.4)
     (descr "Resistor,Chip;3.20mm L X 1.60mm W X 0.65mm H")
     (attr smd)
     (fp_text reference REF** (at 0 0) (layer F.SilkS) hide
@@ -120,7 +120,7 @@
     (fp_line (start -0.621 0.646) (end 0.621 0.646) (layer F.SilkS) (width 0.35))
     (pad 2 smd rect (at 1.45 0) (size 1.15 1.8) (layers F.Cu F.Paste F.Mask))
     (pad 1 smd rect (at -1.45 0) (size 1.15 1.8) (layers F.Cu F.Paste F.Mask))
-    (model ${KIPRJMOD}/RESC3216x66_EIA1206_METRIC3216.wrl
+    (model ${KIPRJMOD}/EIA1206_METRIC3216/000.wrl
       (at (xyz 0 0 0))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
